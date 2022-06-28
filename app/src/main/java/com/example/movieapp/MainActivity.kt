@@ -10,10 +10,11 @@ import com.example.movieapp.databinding.ActivityMainBinding
 import com.example.movieapp.databinding.FragmentMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        MAIN = this
         val navHost =
             supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
         navController = navHost.navController

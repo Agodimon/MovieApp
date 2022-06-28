@@ -1,14 +1,25 @@
 package com.example.movieapp.screens.main
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.ActivityNavigator
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movieapp.MAIN
+import com.example.movieapp.MainActivity
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
+import com.example.movieapp.models.MovieItemModel
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -32,13 +43,23 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         viewModel.myMovies.observe(viewLifecycleOwner) { list ->
             adapter.setList(list.body()!!.results)
         }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main_menu,menu)
+        inflater.inflate(R.menu.main_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.item_favorite -> {
+                MAIN.navController.navigate(R.id.action_mainFragment_to_favoriteFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         viewBinding = null
