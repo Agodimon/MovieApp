@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.R
-import com.example.movieapp.databinding.FavoriteFragmentBinding
 import com.example.movieapp.databinding.FragmentDetailBinding
+
+
 import com.example.movieapp.models.MovieItemModel
 import com.example.movieapp.screens.favorite.FavoriteViewModel
 
@@ -19,9 +21,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private var viewBinding: FragmentDetailBinding? = null
     lateinit var currentMovieItemModel: MovieItemModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        currentMovieItemModel = arguments?.getSerializable("movie") as MovieItemModel
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        currentMovieItemModel = arguments?.getSerializable("movie") as MovieItemModel
+
         val binding = FragmentDetailBinding.bind(view)
         viewBinding = binding
         init()
@@ -30,11 +37,15 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun init() {
         viewBinding?.let {
             Glide.with(this)
-                .load(currentMovieItemModel.posterPath)
+                .load("$BASE_IMAGE_URL${currentMovieItemModel.posterPath}")
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_foreground)
                 .into(it.imgDetail)
+
         }
+        viewBinding?.tvTitle?.text = currentMovieItemModel.title
+        viewBinding?.tvDate?.text = currentMovieItemModel.releaseDate
+        viewBinding?.tvDescription?.text = currentMovieItemModel.overview
     }
 
     override fun onDestroyView() {

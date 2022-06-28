@@ -64,4 +64,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onDestroyView()
         viewBinding = null
     }
+
+
+    companion object {
+        fun clickMovie(model: MovieItemModel) {
+            val bundle = Bundle()
+            bundle.putSerializable("movie",model)
+            MAIN.navController.navigate(R.id.action_mainFragment_to_detailFragment,bundle)
+        }
+    }
 }

@@ -41,4 +41,14 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
         notifyDataSetChanged()
     }
 
+    override fun onViewAttachedToWindow(holder: MyViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        holder.itemView.setOnClickListener {
+            MainFragment.clickMovie(moviesList[holder.adapterPosition])
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: MyViewHolder) {
+        holder.itemView.setOnClickListener(null)
+    }
 }
