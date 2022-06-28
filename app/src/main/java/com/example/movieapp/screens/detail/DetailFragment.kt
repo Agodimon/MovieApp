@@ -6,12 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.movieapp.R
-
+import com.example.movieapp.databinding.FavoriteFragmentBinding
+import com.example.movieapp.databinding.FragmentDetailBinding
+import com.example.movieapp.screens.favorite.FavoriteViewModel
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
+    private lateinit var viewModel: DetailViewModel
+    private var viewBinding: FragmentDetailBinding? = null
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentDetailBinding.bind(view)
+        viewBinding = binding
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewBinding = null
+    }
 
 
 }
