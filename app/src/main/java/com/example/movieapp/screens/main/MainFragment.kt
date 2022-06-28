@@ -1,6 +1,8 @@
 package com.example.movieapp.screens.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -20,6 +22,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val binding = FragmentMainBinding.bind(view)
         viewBinding = binding
         init()
+        setHasOptionsMenu(true)
     }
 
     private fun init() {
@@ -32,6 +35,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         viewBinding = null
