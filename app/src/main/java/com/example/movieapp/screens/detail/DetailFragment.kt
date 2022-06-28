@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.R
+import com.example.movieapp.SaveSharedImpl
 import com.example.movieapp.databinding.FragmentDetailBinding
 
 
@@ -20,7 +21,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModels()
     private var viewBinding: FragmentDetailBinding? = null
     lateinit var currentMovieItemModel: MovieItemModel
-    private var isFavorite = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun init() {
+        var isFavorite = false
+        val valueBoolean =
+            SaveSharedImpl().getFavorite(requireContext(), currentMovieItemModel.id.toString())
         viewBinding?.let {
             Glide.with(this)
                 .load("$BASE_IMAGE_URL${currentMovieItemModel.posterPath}")
@@ -44,18 +48,36 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 .into(it.imgDetail)
 
         }
+
         viewBinding?.tvTitle?.text = currentMovieItemModel.title
         viewBinding?.tvDate?.text = currentMovieItemModel.releaseDate
         viewBinding?.tvDescription?.text = currentMovieItemModel.overview
 
+        if (isFavorite != valueBoolean) {
+            viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+        } else {
+            viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        }
+        isFavorite = valueBoolean
         viewBinding?.imgIcFavorite?.setOnClickListener {
-            isFavorite = if (!isFavorite){
+
+            isFavorite = if (!isFavorite) {
                 viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 viewModel.insert(currentMovieItemModel)
+                SaveSharedImpl().setFavorite(
+                    requireContext(),
+                    currentMovieItemModel.id.toString(),
+                    true
+                )
                 true
-            }else{
+            } else {
                 viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 viewModel.delete(currentMovieItemModel)
+                SaveSharedImpl().setFavorite(
+                    requireContext(),
+                    currentMovieItemModel.id.toString(),
+                    false
+                )
                 false
             }
         }

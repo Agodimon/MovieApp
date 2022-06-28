@@ -32,8 +32,7 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
     private fun init() {
         recyclerView = viewBinding?.rvFavorite
         recyclerView?.adapter = adapter
-        viewModel.getAllMovies().observe(viewLifecycleOwner){
-            list->
+        viewModel.getAllMovies().observe(viewLifecycleOwner) { list ->
             adapter.setList(list.asReversed())
         }
     }
@@ -42,11 +41,12 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
         super.onDestroyView()
         viewBinding = null
     }
+
     companion object {
         fun clickMovie(model: MovieItemModel) {
             val bundle = Bundle()
-            bundle.putSerializable("movie",model)
-            MAIN.navController.navigate(R.id.action_favoriteFragment_to_detailFragment,bundle)
+            bundle.putSerializable("movie", model)
+            MAIN.navController.navigate(R.id.action_favoriteFragment_to_detailFragment, bundle)
         }
     }
 
