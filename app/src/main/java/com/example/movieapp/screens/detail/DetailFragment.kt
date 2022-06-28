@@ -51,9 +51,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         viewBinding?.imgIcFavorite?.setOnClickListener {
             isFavorite = if (!isFavorite){
                 viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                viewModel.insert(currentMovieItemModel)
                 true
             }else{
                 viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                viewModel.delete(currentMovieItemModel)
                 false
             }
         }
