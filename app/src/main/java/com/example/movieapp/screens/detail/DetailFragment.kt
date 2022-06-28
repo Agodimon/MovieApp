@@ -20,6 +20,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val binding = FragmentDetailBinding.bind(view)
         viewBinding = binding
 
+        init()
+    }
+
+    private fun init() {
+
     }
 
     override fun onDestroyView() {
