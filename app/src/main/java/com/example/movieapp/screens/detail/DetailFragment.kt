@@ -20,6 +20,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModels()
     private var viewBinding: FragmentDetailBinding? = null
     lateinit var currentMovieItemModel: MovieItemModel
+    private var isFavorite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,16 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         viewBinding?.tvTitle?.text = currentMovieItemModel.title
         viewBinding?.tvDate?.text = currentMovieItemModel.releaseDate
         viewBinding?.tvDescription?.text = currentMovieItemModel.overview
+
+        viewBinding?.imgIcFavorite?.setOnClickListener {
+            if (!isFavorite){
+                viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                isFavorite = true
+            }else{
+                viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                isFavorite = false
+            }
+        }
     }
 
     override fun onDestroyView() {
