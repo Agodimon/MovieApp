@@ -7,12 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.MAIN
 import com.example.movieapp.R
 import com.example.movieapp.models.MovieItemModel
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
-    private val moviesList = emptyList<MovieItemModel>()
+    private var moviesList = emptyList<MovieItemModel>()
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
@@ -25,8 +26,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.item_title).text = moviesList[position].title
         holder.itemView.findViewById<TextView>(R.id.item_date).text =
             moviesList[position].releaseDate
-        Glide.with(MAIN)
-            .load(moviesList[position].posterPath)
+        Glide.with(holder.itemView.context)
+            .load("$BASE_IMAGE_URL${moviesList[position].posterPath}")
             .centerCrop()
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.itemView.findViewById(R.id.item_img))
@@ -35,4 +36,9 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
     override fun getItemCount(): Int {
         return moviesList.size
     }
+    fun setList(list: List<MovieItemModel>){
+        moviesList = list
+        notifyDataSetChanged()
+    }
+
 }
