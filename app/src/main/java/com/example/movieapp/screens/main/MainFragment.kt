@@ -28,6 +28,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private var recyclerView: RecyclerView? = null
     private val adapter by lazy { MainAdapter() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.initDataBase()
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentMainBinding.bind(view)
@@ -37,6 +41,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun init() {
+
         viewModel.getMovies()
         recyclerView = viewBinding?.rvMain
         recyclerView?.adapter = adapter

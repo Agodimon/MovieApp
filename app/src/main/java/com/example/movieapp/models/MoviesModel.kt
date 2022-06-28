@@ -1,13 +1,10 @@
 package com.example.movieapp.models
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-
 data class MoviesModel(
-    @SerializedName("page")
     val page: Int,
-    @SerializedName("results")
     val results: List<MovieItemModel>,
-    @SerializedName("total_pages")
-    val totalPages: Int,
-    @SerializedName("total_results")
-    val totalResults: Int
+    val total_pages: Int,
+    val total_results: Int
 )

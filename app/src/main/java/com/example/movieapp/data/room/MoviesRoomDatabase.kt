@@ -5,21 +5,22 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.movieapp.data.room.dao.MoviesDao
+import com.example.movieapp.models.MovieItemModel
 import com.example.movieapp.models.MoviesModel
 
-@Database(entities = [MoviesModel::class], version = 1)
+@Database(entities = [MovieItemModel::class], version = 1, exportSchema = false)
 abstract class MoviesRoomDatabase : RoomDatabase() {
     abstract fun getMovieDao(): MoviesDao
 
     companion object {
         private var database: MoviesRoomDatabase? = null
-        fun getInstance(context: Context):RoomDatabase{
-            return if (database==null){
+        fun getInstance(context: Context): MoviesRoomDatabase {
+            return if (database == null) {
                 database = Room
-                    .databaseBuilder(context,MoviesRoomDatabase::class.java,"db_movies")
+                    .databaseBuilder(context, MoviesRoomDatabase::class.java, "db_movies")
                     .build()
                 database as MoviesRoomDatabase
-            }else{
+            } else {
                 database as MoviesRoomDatabase
             }
         }
