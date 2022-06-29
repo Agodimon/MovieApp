@@ -26,6 +26,7 @@ class MainAdapter(private val onClick: OnClick) : RecyclerView.Adapter<MainAdapt
         holder.itemView.setOnClickListener{onClick.onClick(moviesList[position])}
 
         holder.itemView.findViewById<TextView>(R.id.item_title).text = moviesList[position].title
+        holder.itemView.findViewById<TextView>(R.id.vertical_imdb).text = moviesList[position].voteAverage.toString()
         holder.itemView.findViewById<TextView>(R.id.item_date).text =
             moviesList[position].releaseDate
         Glide.with(holder.itemView.context)

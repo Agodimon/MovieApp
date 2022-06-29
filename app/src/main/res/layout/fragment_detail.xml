@@ -57,6 +57,21 @@
         app:layout_constraintTop_toBottomOf="@+id/rv_movie_actors" />
 
     <TextView
+        android:id="@+id/vertical_imdb"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_imdb"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="7.8"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_detail"
+        app:layout_constraintEnd_toEndOf="@+id/img_detail" />
+
+    <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

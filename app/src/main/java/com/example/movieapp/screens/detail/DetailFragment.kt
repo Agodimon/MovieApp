@@ -48,6 +48,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
 
         viewBinding?.tvTitle?.text = currentMovieItemModel.title
+        viewBinding?.verticalImdb?.text = currentMovieItemModel.voteAverage.toString()
         viewBinding?.tvDate?.text = currentMovieItemModel.releaseDate
         viewBinding?.tvDescription?.text = currentMovieItemModel.overview
 
