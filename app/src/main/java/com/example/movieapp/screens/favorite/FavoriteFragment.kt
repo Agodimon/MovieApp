@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FavoriteFragmentBinding
-import com.example.movieapp.models.MovieItemModel
+import com.example.movieapp.models.movieModel.MovieItemModel
 import com.example.movieapp.screens.main.MainAdapter
 import com.example.movieapp.util.OnClick
 import org.koin.androidx.viewmodel.ext.android.viewModel

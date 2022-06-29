@@ -8,9 +8,8 @@ import com.bumptech.glide.Glide
 import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.R
 import com.example.movieapp.SAVE_SHARED
-import com.example.movieapp.util.SaveSharedImpl
 import com.example.movieapp.databinding.FragmentDetailBinding
-import com.example.movieapp.models.MovieItemModel
+import com.example.movieapp.models.movieModel.MovieItemModel
 import com.example.movieapp.util.SaveSharedInterface
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

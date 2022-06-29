@@ -8,7 +8,7 @@ import com.example.movieapp.data.retrofit.RetrofitRepositoryInterface
 import com.example.movieapp.data.room.MoviesRoomDatabase
 import com.example.movieapp.data.room.repository.MoviesRepository
 import com.example.movieapp.data.room.repository.MoviesRepositoryImpl
-import com.example.movieapp.models.MoviesModel
+import com.example.movieapp.models.movieModel.MoviesModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
 

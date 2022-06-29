@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.R
-import com.example.movieapp.models.MovieItemModel
+import com.example.movieapp.models.movieModel.MovieItemModel
 import com.example.movieapp.util.OnClick
 
 class MainAdapter(private val onClick: OnClick) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {

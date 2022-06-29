@@ -3,7 +3,7 @@ package com.example.movieapp.screens.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieapp.data.room.repository.MoviesRepository
-import com.example.movieapp.models.MovieItemModel
+import com.example.movieapp.models.movieModel.MovieItemModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
