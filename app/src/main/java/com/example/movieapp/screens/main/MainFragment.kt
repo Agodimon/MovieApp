@@ -40,7 +40,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             override fun onClick(model: MovieItemModel) {
                 val bundle = Bundle()
                 bundle.putSerializable("movie", model)
-                MAIN.navController.navigate(R.id.action_mainFragment_to_detailFragment, bundle)
+                findNavController().navigate(R.id.action_mainFragment_to_detailFragment, bundle)
             }
 
         })
