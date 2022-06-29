@@ -16,10 +16,10 @@ class DetailViewModel(val repository: MoviesRepository) : ViewModel() {
 
     fun insert(movieItemModel: MovieItemModel) = viewModelScope.launch(Dispatchers.IO) {
 
-        REPOSITORY_IMPL.insertMovie(movieItemModel)
+        repository.insertMovie(movieItemModel)
     }
 
     fun delete(movieItemModel: MovieItemModel) = viewModelScope.launch(Dispatchers.IO) {
-        REPOSITORY_IMPL.deleteMovie(movieItemModel)
+        repository.deleteMovie(movieItemModel)
     }
 }

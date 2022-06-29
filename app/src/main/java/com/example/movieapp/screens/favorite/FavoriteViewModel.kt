@@ -10,6 +10,6 @@ import com.example.movieapp.models.MovieItemModel
 class FavoriteViewModel(val repository: MoviesRepository) : ViewModel() {
 
     fun getAllMovies(): LiveData<List<MovieItemModel>> {
-        return REPOSITORY_IMPL.allMovies
+        return repository.allMovies
     }
 }

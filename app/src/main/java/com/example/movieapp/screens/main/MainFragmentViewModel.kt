@@ -19,7 +19,7 @@ import retrofit2.Response
 
 class MainFragmentViewModel(
     val context: Context,
-    val repoRoomMovies: MoviesRepository,
+    var repoRoomMovies: MoviesRepository,
     val repoApiMovies:RetrofitRepositoryInterface
 ) : ViewModel() {
     private val repository = RetrofitRepository()
@@ -34,6 +34,6 @@ class MainFragmentViewModel(
 
     fun initDataBase() {
         val daoMovie = MoviesRoomDatabase.getInstance(context).getMovieDao()
-        REPOSITORY_IMPL = MoviesRepositoryImpl(daoMovie)
+        repoRoomMovies = MoviesRepositoryImpl(daoMovie)
     }
 }
