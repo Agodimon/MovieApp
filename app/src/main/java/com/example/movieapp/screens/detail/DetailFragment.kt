@@ -4,12 +4,15 @@ package com.example.movieapp.screens.detail
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.R
 import com.example.movieapp.SAVE_SHARED
 import com.example.movieapp.databinding.FragmentDetailBinding
+
 import com.example.movieapp.models.movieModel.MovieItemModel
+import com.example.movieapp.screens.main.MainAdapter
 import com.example.movieapp.util.SaveSharedInterface
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,8 +22,10 @@ import org.koin.core.qualifier.named
 class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModel()
     private var viewBinding: FragmentDetailBinding? = null
+    private var recyclerView: RecyclerView? = null
     lateinit var currentMovieItemModel: MovieItemModel
     private val saveShared: SaveSharedInterface by inject(named(SAVE_SHARED))
+    private var adapter: DetailAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +43,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         var isFavorite = false
         val valueBoolean =
             saveShared.getFavorite(currentMovieItemModel.id.toString())
+        viewModel.getActors(297761)
+        recyclerView = viewBinding?.rvMovieActors
+        recyclerView?.adapter = adapter
+        viewModel.actors.observe(viewLifecycleOwner) { list ->
+            adapter?.setList(list.body()!!.cast)
+        }
         viewBinding?.let {
             Glide.with(this)
                 .load("$BASE_IMAGE_URL${currentMovieItemModel.posterPath}")

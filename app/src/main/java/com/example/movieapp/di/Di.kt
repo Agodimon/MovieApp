@@ -34,7 +34,13 @@ object Di {
                     .getMovieDao()
             )
         }
-        viewModel { DetailViewModel(repository = get(named(MOVIES_REPO_ROOM))) }
+        viewModel {
+            DetailViewModel(
+                androidContext(),
+                repoRoomMovies = get(named(MOVIES_REPO_ROOM)),
+                repoApiMovies = get(named(MOVIES_REPO_API))
+            )
+        }
         viewModel { FavoriteViewModel(repository = get(named(MOVIES_REPO_ROOM))) }
         viewModel {
             MainFragmentViewModel(
