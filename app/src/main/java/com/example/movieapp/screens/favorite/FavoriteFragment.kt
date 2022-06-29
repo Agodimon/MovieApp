@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.movieapp.MAIN
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FavoriteFragmentBinding
 import com.example.movieapp.models.MovieItemModel

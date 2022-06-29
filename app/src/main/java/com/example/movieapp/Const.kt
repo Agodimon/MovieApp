@@ -1,8 +1,5 @@
 package com.example.movieapp
 
-import com.example.movieapp.data.room.repository.MoviesRepositoryImpl
-
-lateinit var MAIN:MainActivity
 const val MOVIES_REPO_API = "MOVIES_REPO_API"
 const val MOVIES_REPO_ROOM = "MOVIES_REPO_ROOM"
 const val SAVE_SHARED = "SAVE_SHARED"
