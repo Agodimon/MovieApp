@@ -14,10 +14,11 @@ import com.example.movieapp.databinding.FavoriteFragmentBinding
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.models.MovieItemModel
 import com.example.movieapp.screens.main.MainAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
 
-    private val viewModel: FavoriteViewModel by viewModels()
+    private val viewModel: FavoriteViewModel by viewModel()
     private var viewBinding: FavoriteFragmentBinding? = null
     private var recyclerView: RecyclerView? = null
     private val adapter by lazy { FavoriteAdapter() }

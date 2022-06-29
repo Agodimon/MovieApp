@@ -20,10 +20,11 @@ import com.example.movieapp.MainActivity
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
 import com.example.movieapp.models.MovieItemModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainFragmentViewModel by viewModels()
+    private val viewModel: MainFragmentViewModel by viewModel()
     private var viewBinding: FragmentMainBinding? = null
     private var recyclerView: RecyclerView? = null
     private val adapter by lazy { MainAdapter() }
