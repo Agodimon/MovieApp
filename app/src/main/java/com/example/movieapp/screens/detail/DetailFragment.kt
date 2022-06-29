@@ -7,17 +7,21 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.movieapp.BASE_IMAGE_URL
 import com.example.movieapp.R
-import com.example.movieapp.SaveSharedImpl
+import com.example.movieapp.SAVE_SHARED
+import com.example.movieapp.util.SaveSharedImpl
 import com.example.movieapp.databinding.FragmentDetailBinding
 import com.example.movieapp.models.MovieItemModel
+import com.example.movieapp.util.SaveSharedInterface
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.qualifier.named
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val viewModel: DetailViewModel by viewModel()
     private var viewBinding: FragmentDetailBinding? = null
     lateinit var currentMovieItemModel: MovieItemModel
-
+    private val saveShared: SaveSharedInterface by inject(named(SAVE_SHARED))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val binding = FragmentDetailBinding.bind(view)
         viewBinding = binding
         init()
@@ -35,7 +38,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private fun init() {
         var isFavorite = false
         val valueBoolean =
-            SaveSharedImpl().getFavorite(requireContext(), currentMovieItemModel.id.toString())
+            saveShared.getFavorite(currentMovieItemModel.id.toString())
         viewBinding?.let {
             Glide.with(this)
                 .load("$BASE_IMAGE_URL${currentMovieItemModel.posterPath}")
@@ -60,8 +63,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             isFavorite = if (!isFavorite) {
                 viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
                 viewModel.insert(currentMovieItemModel)
-                SaveSharedImpl().setFavorite(
-                    requireContext(),
+                saveShared.setFavorite(
                     currentMovieItemModel.id.toString(),
                     true
                 )
@@ -69,8 +71,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             } else {
                 viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 viewModel.delete(currentMovieItemModel)
-                SaveSharedImpl().setFavorite(
-                    requireContext(),
+                saveShared.setFavorite(
                     currentMovieItemModel.id.toString(),
                     false
                 )

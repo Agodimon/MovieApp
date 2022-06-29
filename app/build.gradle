@@ -88,4 +88,7 @@ dependencies {
     // Koin main features for Android
     implementation "io.insert-koin:koin-android:$koin_version"
 
+    //preference
+    def pref_version = "1.2.0"
+    implementation "androidx.preference:preference-ktx:$pref_version"
 }
