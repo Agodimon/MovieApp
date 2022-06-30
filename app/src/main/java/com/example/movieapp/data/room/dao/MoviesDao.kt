@@ -2,7 +2,7 @@ package com.example.movieapp.data.room.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.movieapp.models.MovieItemModel
+import com.example.movieapp.models.movieModel.MovieItemModel
 
 @Dao
 interface MoviesDao {
