@@ -24,12 +24,15 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private var viewBinding: FragmentDetailBinding? = null
     private var recyclerView: RecyclerView? = null
     lateinit var currentMovieItemModel: MovieItemModel
+
     private val saveShared: SaveSharedInterface by inject(named(SAVE_SHARED))
     private var adapter: DetailAdapter? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         currentMovieItemModel = arguments?.getSerializable("movie") as MovieItemModel
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,14 +43,17 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun init() {
+        val idMovie = arguments?.get("id_movie") as Int
+        adapter = DetailAdapter()
         var isFavorite = false
         val valueBoolean =
             saveShared.getFavorite(currentMovieItemModel.id.toString())
-        viewModel.getActors(297761)
+        viewModel.getActors(idMovie)
         recyclerView = viewBinding?.rvMovieActors
         recyclerView?.adapter = adapter
         viewModel.actors.observe(viewLifecycleOwner) { list ->
             adapter?.setList(list.body()!!.cast)
+
         }
         viewBinding?.let {
             Glide.with(this)

@@ -39,6 +39,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             override fun onClick(model: MovieItemModel) {
                 val bundle = Bundle()
                 bundle.putSerializable("movie", model)
+                bundle.putSerializable("id_movie",model.id)
                 findNavController().navigate(R.id.action_mainFragment_to_detailFragment, bundle)
             }
 
@@ -48,6 +49,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         recyclerView?.adapter = adapter
         viewModel.myMovies.observe(viewLifecycleOwner) { list ->
             adapter?.setList(list.body()!!.results)
+
+
         }
     }
 
