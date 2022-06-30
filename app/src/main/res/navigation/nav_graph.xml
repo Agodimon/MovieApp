@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.movieapp.screens.main.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:label="Главная"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.movieapp.screens.favorite.FavoriteFragment"
-        android:label="favorite_fragment"
+        android:label="Избранное"
         tools:layout="@layout/favorite_fragment" >
         <action
             android:id="@+id/action_favoriteFragment_to_detailFragment"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.movieapp.screens.detail.DetailFragment"
-        android:label="fragment_detail"
+        android:label="О фильме"
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_detailFragment_to_favoriteFragment"
