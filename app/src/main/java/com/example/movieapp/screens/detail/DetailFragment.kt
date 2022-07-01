@@ -29,6 +29,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val saveShared: SaveSharedInterface by inject(named(SAVE_SHARED))
     private var adapter: DetailAdapter? = null
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        currentMovieItemModel = arguments?.getSerializable("movie") as MovieItemModel
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentDetailBinding.bind(view)
@@ -37,7 +44,6 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun init() {
-        currentMovieItemModel = arguments?.getSerializable("movie") as MovieItemModel
         val idMovie = arguments?.get("id_movie") as Int
         adapter = DetailAdapter()
         var isFavorite = false
