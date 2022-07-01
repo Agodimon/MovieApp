@@ -11,6 +11,7 @@ import com.example.movieapp.R
 import com.example.movieapp.SAVE_SHARED
 import com.example.movieapp.databinding.FragmentDetailBinding
 
+
 import com.example.movieapp.models.movieModel.MovieItemModel
 import com.example.movieapp.screens.main.MainAdapter
 import com.example.movieapp.util.SaveSharedInterface
@@ -20,10 +21,10 @@ import org.koin.core.qualifier.named
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
-    private val viewModel: DetailViewModel by viewModel()
     private var viewBinding: FragmentDetailBinding? = null
     private var recyclerView: RecyclerView? = null
     lateinit var currentMovieItemModel: MovieItemModel
+    private val viewModel: DetailViewModel by viewModel()
 
     private val saveShared: SaveSharedInterface by inject(named(SAVE_SHARED))
     private var adapter: DetailAdapter? = null
@@ -43,6 +44,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun init() {
+
         val idMovie = arguments?.get("id_movie") as Int
         adapter = DetailAdapter()
         var isFavorite = false
@@ -63,44 +65,44 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 .into(it.imgDetail)
 
         }
+        with(checkNotNull(viewBinding)) {
+            tvTitle.text = currentMovieItemModel.title
+            verticalImdb.text = currentMovieItemModel.voteAverage.toString()
+            tvDate.text = currentMovieItemModel.releaseDate
+            tvDescription.text = currentMovieItemModel.overview
 
-        viewBinding?.tvTitle?.text = currentMovieItemModel.title
-        viewBinding?.verticalImdb?.text = currentMovieItemModel.voteAverage.toString()
-        viewBinding?.tvDate?.text = currentMovieItemModel.releaseDate
-        viewBinding?.tvDescription?.text = currentMovieItemModel.overview
-
-        if (isFavorite != valueBoolean) {
-            viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-        } else {
-            viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-        }
-        isFavorite = valueBoolean
-        viewBinding?.imgIcFavorite?.setOnClickListener {
-
-            isFavorite = if (!isFavorite) {
-                viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
-                viewModel.insert(currentMovieItemModel)
-                saveShared.setFavorite(
-                    currentMovieItemModel.id.toString(),
-                    true
-                )
-                true
+            if (isFavorite != valueBoolean) {
+                imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
             } else {
-                viewBinding!!.imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                viewModel.delete(currentMovieItemModel)
-                saveShared.setFavorite(
-                    currentMovieItemModel.id.toString(),
+                imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            }
+            isFavorite = valueBoolean
+            imgIcFavorite.setOnClickListener {
+
+                isFavorite = if (!isFavorite) {
+                    imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    viewModel.insert(currentMovieItemModel)
+                    saveShared.setFavorite(
+                        currentMovieItemModel.id.toString(),
+                        true
+                    )
+                    true
+                } else {
+                    imgIcFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    viewModel.delete(currentMovieItemModel)
+                    saveShared.setFavorite(
+                        currentMovieItemModel.id.toString(),
+                        false
+                    )
                     false
-                )
-                false
+                }
             }
         }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         viewBinding = null
     }
-
-
 }
