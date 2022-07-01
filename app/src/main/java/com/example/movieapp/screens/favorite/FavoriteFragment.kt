@@ -31,6 +31,7 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
             override fun onClick(model: MovieItemModel) {
                 val bundle = Bundle()
                 bundle.putSerializable("movie", model)
+                bundle.putSerializable("id_movie", model.id)
                 findNavController().navigate(R.id.action_favoriteFragment_to_detailFragment, bundle)
             }
 
