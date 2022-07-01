@@ -20,9 +20,9 @@ class MainFragmentViewModel(
     val myMovies: MutableLiveData<Response<MoviesModel>> = MutableLiveData()
 
 
-    fun getMovies() {
+    fun getMovies(page:Int) {
         viewModelScope.launch {
-            myMovies.value = repoApiMovies.getMovie()
+            myMovies.value = repoApiMovies.getMovie(page)
         }
     }
 

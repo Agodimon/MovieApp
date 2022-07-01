@@ -11,6 +11,7 @@ import com.example.movieapp.R
 import com.example.movieapp.SAVE_SHARED
 import com.example.movieapp.databinding.FragmentDetailBinding
 
+
 import com.example.movieapp.models.movieModel.MovieItemModel
 import com.example.movieapp.screens.main.MainAdapter
 import com.example.movieapp.util.SaveSharedInterface
@@ -20,10 +21,10 @@ import org.koin.core.qualifier.named
 
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
-    private val viewModel: DetailViewModel by viewModel()
     private var viewBinding: FragmentDetailBinding? = null
     private var recyclerView: RecyclerView? = null
     lateinit var currentMovieItemModel: MovieItemModel
+    private val viewModel: DetailViewModel by viewModel()
 
     private val saveShared: SaveSharedInterface by inject(named(SAVE_SHARED))
     private var adapter: DetailAdapter? = null

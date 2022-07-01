@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.R
 import com.example.movieapp.databinding.FragmentMainBinding
+
 import com.example.movieapp.models.movieModel.MovieItemModel
 import com.example.movieapp.util.OnClick
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,6 +21,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private var viewBinding: FragmentMainBinding? = null
     private var recyclerView: RecyclerView? = null
     private var adapter: MainAdapter? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +41,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             override fun onClick(model: MovieItemModel) {
                 val bundle = Bundle()
                 bundle.putSerializable("movie", model)
-                bundle.putSerializable("id_movie",model.id)
+                bundle.putSerializable("id_movie", model.id)
                 findNavController().navigate(R.id.action_mainFragment_to_detailFragment, bundle)
             }
 
         })
-        viewModel.getMovies()
+
+        viewModel.getMovies(1)
         recyclerView = viewBinding?.rvMain
         recyclerView?.adapter = adapter
         viewModel.myMovies.observe(viewLifecycleOwner) { list ->
