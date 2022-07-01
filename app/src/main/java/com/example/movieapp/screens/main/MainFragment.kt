@@ -51,7 +51,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         recyclerView = viewBinding?.rvMain
         recyclerView?.adapter = adapter
         viewModel.myMovies.observe(viewLifecycleOwner) { list ->
-            adapter?.setList(list.body()!!.results)
+            adapter?.setList(checkNotNull(list.body()).results)
 
 
         }
