@@ -91,4 +91,8 @@ dependencies {
     //preference
     def pref_version = "1.2.0"
     implementation "androidx.preference:preference-ktx:$pref_version"
+
+    //Paging
+    def paging_version = "3.0.0-beta03"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 }

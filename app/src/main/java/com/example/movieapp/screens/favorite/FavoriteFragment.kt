@@ -17,7 +17,7 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
     private val viewModel: FavoriteViewModel by viewModel()
     private var viewBinding: FavoriteFragmentBinding? = null
     private var recyclerView: RecyclerView? = null
-    private var adapter: MainAdapter? = null
+    private var adapter: FavoriteAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,7 +27,7 @@ class FavoriteFragment : Fragment(R.layout.favorite_fragment) {
     }
 
     private fun init() {
-        adapter = MainAdapter(object : OnClick {
+        adapter = FavoriteAdapter(object : OnClick {
             override fun onClick(model: MovieItemModel) {
                 val bundle = Bundle()
                 bundle.putSerializable("movie", model)
